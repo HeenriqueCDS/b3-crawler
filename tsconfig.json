@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "strict": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/test/*": ["./test/*"]
+    }
+  },
+  "exclude": ["node_modules"]
+}
