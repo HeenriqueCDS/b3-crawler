@@ -1,1 +1,0 @@
-{"errorType":"TypeError","errorMessage":"Cannot read properties of undefined (reading 'forEach')","trace":["TypeError: Cannot read properties of undefined (reading 'forEach')","    at Runtime.handler (/var/task/index.js:26:17)","    at Runtime.handleOnceNonStreaming (file:///var/runtime/index.mjs:1173:29)"]}

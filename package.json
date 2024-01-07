@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsup index.ts"
+    "prebuild": "rm -rf dist",
+    "build": "tsup src/index.ts",
+    "postbuild": "cd dist && zip -r index.zip index.js*"
   },
   "keywords": [],
   "author": "",
