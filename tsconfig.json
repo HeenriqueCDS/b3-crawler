@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["vitest/globals"],
     "moduleResolution": "node",
     "skipLibCheck": true,
     "strict": true,
@@ -8,7 +9,7 @@
     "noImplicitAny": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@/test/*": ["./test/*"]
+      "@/test/*": ["./test/*"],
     }
   },
   "exclude": ["node_modules"]
