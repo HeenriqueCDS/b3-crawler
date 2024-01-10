@@ -7,9 +7,7 @@ A lambda application that crawls data of the brazilian stock market.
 - [About](#about)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
+  - [Testing Locally](#testing-locally)
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
 
@@ -54,6 +52,7 @@ Then done, you'll have your tests running!
 
 ## Folder structure
 
+```
 /project-root
 │
 ├── /src # Source code
@@ -67,6 +66,7 @@ Then done, you'll have your tests running!
 ├── .gitignore # Git ignore file
 ├── package.json # Node.js package file
 ├── README.md # Project README file├── .gitignore # Git ignore file
+```
 
 ## License
 
