@@ -1,6 +1,6 @@
 import { HistoricalDataPrice } from '@/types/get-quote.response'
 
-export const formatHistory = (
+export const historyMapper = (
   symbol: string,
   history: HistoricalDataPrice[],
 ) => {

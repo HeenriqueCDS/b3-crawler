@@ -1,6 +1,6 @@
 import { QuoteResult } from '@/types/get-quote.response'
 
-export const formatTicker = (ticker: QuoteResult) => {
+export const tickerMapper = (ticker: QuoteResult) => {
   return {
     symbol: ticker.symbol,
     currency: ticker.currency,
