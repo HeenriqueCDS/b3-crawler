@@ -65,7 +65,8 @@ Then done, you'll have your tests running!
 │
 ├── .gitignore # Git ignore file
 ├── package.json # Node.js package file
-├── README.md # Project README file├── .gitignore # Git ignore file
+├── README.md # Project README file
+├── .gitignore # Git ignore file
 ```
 
 ## License
