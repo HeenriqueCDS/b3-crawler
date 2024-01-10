@@ -1,7 +1,20 @@
+import { db } from '@/services/database'
+import { getCompleteQuote } from '@/utils/client/get-complete-quote'
+import { listQuotes } from '@/utils/client/list-quotes'
+
 import { ScheduledHandler } from 'aws-lambda'
 
-export const handler: ScheduledHandler = (event) => {
+export const handler: ScheduledHandler = async (event) => {
   console.log('SCHEDULED_IMPORTER')
-  // Verificar quantos registros existem no banco
-  // Buscar a partir dos registros existentes
+  const count = await db('quote').count('symbol', { as: 'count' }).first()
+  const page = Math.ceil(Number(count?.count) / 10) + 1 || 0
+  const symbols = await listQuotes(page)
+
+  for (const symbol of symbols) {
+    const { ticker, history } = await getCompleteQuote(symbol)
+    await db('quote').insert(ticker).onConflict('symbol').ignore()
+    for (const item of history) {
+      await db('history').insert(item).onConflict('date').ignore()
+    }
+  }
 }
