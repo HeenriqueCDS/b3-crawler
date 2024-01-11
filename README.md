@@ -7,9 +7,7 @@ A lambda application that crawls data of the brazilian stock market.
 - [About](#about)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
+  - [Testing Locally](#testing-locally)
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
 
@@ -24,7 +22,7 @@ Receives a message from a SQS Queue, containing a tickerId, then it uses it to i
 `scheduled-importer.ts`
 This one is scheduled and triggered by Event Bridge at AWS, it retrieves data from 10 new tickets, and inserts into the same database as the previous function
 
-This lambdas are part of a bigger application called *B3Finder*, it lists stocks from B3 (Brazilian Stock Market) and show to the user useful information to help him to choose on where to invest his money
+This lambdas are part of a bigger application called *B3Finder*, it lists stocks from B3 (Brazilian Stock Market) and show to the user useful information to help him to choose where to invest his money
 
 ## Getting Started
 ### Prerequisites
@@ -54,6 +52,7 @@ Then done, you'll have your tests running!
 
 ## Folder structure
 
+```
 /project-root
 │
 ├── /src # Source code
@@ -66,7 +65,9 @@ Then done, you'll have your tests running!
 │
 ├── .gitignore # Git ignore file
 ├── package.json # Node.js package file
-├── README.md # Project README file├── .gitignore # Git ignore file
+├── README.md # Project README file
+├── .gitignore # Git ignore file
+```
 
 ## License
 
