@@ -80,10 +80,10 @@ Starting from the assumption you have already installed the [AWS CLI](#prerequis
 #Create the build of the application, it owns a pre and a post scripts as you can se in the package.json ile
 npm run build
 
-#To deploy the invocable function, run the following command, make you sure have created 
+#To deploy the invocable function, run the following command
 aws lambda create-function --function-name b3-invocable-importer --runtime "nodejs18.x" --role arn:aws:iam::12345678910:role/your-lambda-role --zip-file "fileb://dist/invocable-importer-importer.zip" --handler invocable-importer.handler
 
-#To deploy the scheduled function, run the following command, make you sure have created 
+#To deploy the scheduled function, run the following command
 aws lambda create-function --function-name b3-scheduled-importer --runtime "nodejs18.x" --role arn:aws:iam::12345678910:role/your-lambda-role --zip-file "fileb://dist/scheduled-importer-importer.zip" --handler scheduled-importer.handler
 ```
 
