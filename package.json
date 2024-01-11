@@ -7,8 +7,8 @@
     "pretest": "tsx ./src/scripts/create-tables.ts",
     "test": "vitest",
     "prebuild": "rm -rf dist",
-    "build": "tsup src/index.ts",
-    "postbuild": "cd dist && zip -r index.zip index.js*"
+    "build": "tsup src/functions",
+    "postbuild": "cd dist && zip -r scheduled-importer.zip scheduled-importer.js* && zip -r invocable-importer.zip invocable-importer.js*"
   },
   "keywords": [],
   "author": "",
