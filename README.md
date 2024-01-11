@@ -8,6 +8,8 @@ A lambda application that crawls data of the brazilian stock market.
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Testing Locally](#testing-locally)
+- [Folder Structure](#folder-structure)
+- [Deploy](#deploy)
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
 
@@ -27,11 +29,12 @@ This lambdas are part of a bigger application called *B3Finder*, it lists stocks
 ## Getting Started
 ### Prerequisites
 
-To run the application you'll need 3 simples things
+To run and deploy the application you'll need 4 simples things
 
 - An account at [BRAPI](https://brapi.dev/), to generate your access token and then save it in your `.env` 
 - [Node.js](https://nodejs.org/en) installed, i recommend you to always use the LTS version, but if there any conflicts, i am using `v18.7.0`
 - [Docker Compose](https://docs.docker.com/compose/) to run a local database, so you don't get billed on your
+- [AWS CLI](https://docs.aws.amazon.com/cli/) to deploy the application, you need to install and configure the AWS CLI
 
 ### Testing Locally
 
@@ -67,6 +70,21 @@ Then done, you'll have your tests running!
 ├── package.json # Node.js package file
 ├── README.md # Project README file
 ├── .gitignore # Git ignore file
+```
+
+## Deploy 
+
+Starting from the assumption you have already installed the [AWS CLI](#prerequisites) and created a IAM role with the lambda basic permission, and access to SQS and RDS, you'll need to run a simple sequence of commands
+
+```bash
+#Create the build of the application, it owns a pre and a post scripts as you can se in the package.json ile
+npm run build
+
+#To deploy the invocable function, run the following command, make you sure have created 
+aws lambda create-function --function-name b3-invocable-importer --runtime "nodejs18.x" --role arn:aws:iam::12345678910:role/your-lambda-role --zip-file "fileb://dist/invocable-importer-importer.zip" --handler invocable-importer.handler
+
+#To deploy the scheduled function, run the following command, make you sure have created 
+aws lambda create-function --function-name b3-scheduled-importer --runtime "nodejs18.x" --role arn:aws:iam::12345678910:role/your-lambda-role --zip-file "fileb://dist/scheduled-importer-importer.zip" --handler scheduled-importer.handler
 ```
 
 ## License
