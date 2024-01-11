@@ -18,7 +18,7 @@ A lambda application that crawls data of the brazilian stock market.
 Explain what your project does,
 This repository houses two lambda functions
 
-`invokable-importer.ts`
+`invocable-importer.ts`
 Receives a message from a SQS Queue, containing a tickerId, then it uses it to insert this ticker information and history into a Postgres database using AWS RDS
 
 `scheduled-importer.ts`

@@ -1,4 +1,4 @@
-import { handler } from '@/functions/invokable-importer'
+import { handler } from '@/functions/invocable-importer'
 import { db } from '@/services/database'
 import { Callback, Context, SQSEvent } from 'aws-lambda'
 
