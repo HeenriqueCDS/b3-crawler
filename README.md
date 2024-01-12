@@ -87,6 +87,14 @@ aws lambda create-function --function-name b3-invocable-importer --runtime "node
 aws lambda create-function --function-name b3-scheduled-importer --runtime "nodejs18.x" --role arn:aws:iam::12345678910:role/your-lambda-role --zip-file "fileb://dist/scheduled-importer.zip" --handler scheduled-importer.handler
 ```
 
+After this you'll be able to se your lambdas deployed in your console and you'll need a few adjustments to put them on track
+
+- Configure the triggers of each function, a SQS Queue to the  invocable and function and a CloudWatch Event Trigger to the scheduled function
+
+- Configure a [Layer](https://docs.aws.amazon.com/lambda/latest/dg/chapter-layers.html) with the [dependencies](https://drive.google.com/file/d/1YF5NlR44boTXoQQtof2GvRttynUNCVBv/view?usp=sharing) for your functions to work properly 
+
+- Configure your environment variables with your database credentials, you can use `create-tables.sql` script to proper structure your database
+
 ## License
 
 This project is licensed under the MIT License 
