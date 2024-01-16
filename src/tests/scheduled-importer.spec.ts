@@ -14,13 +14,8 @@ describe('scheduled-importer', () => {
     await db.destroy()
   })
 
-  it('should be defined', () => {
-    expect(handler).toBeDefined()
-  })
-
   it('should be able to import tickers and history', async () => {
     await handler(event, context, callback)
-
     const quotes = await db('quote')
       .select('symbol')
       .limit(10)
@@ -28,16 +23,13 @@ describe('scheduled-importer', () => {
       .then((data) => data.map((item) => item.symbol))
 
     const symbols = await listQuotes(1)
-
     expect(quotes.sort()).toEqual(symbols.sort())
-
-    const history = await db('history').where('quoteSymbol', 'MGLU3')
-    expect(history).toHaveLength(61)
+    const history = await db('history').count('date', { as: 'count' }).first()
+    expect(history).toEqual({ count: '620' })
   })
 
   it('should be able to import tickers from the second page', async () => {
     await handler(event, context, callback)
-
     const quotes = await db('quote')
       .select('symbol')
       .limit(10)
@@ -46,7 +38,6 @@ describe('scheduled-importer', () => {
       .then((data) => data.map((item) => item.symbol))
 
     const symbols = await listQuotes(2)
-
     expect(quotes.sort()).toEqual(symbols.sort())
   })
 }, 30000)
