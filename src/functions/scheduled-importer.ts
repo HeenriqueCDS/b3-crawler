@@ -12,9 +12,10 @@ export const handler: ScheduledHandler = async (event) => {
 
   for (const symbol of symbols) {
     const { ticker, history } = await getCompleteQuote(symbol)
-    await db('quote').insert(ticker).onConflict('symbol').ignore()
-    for (const item of history) {
-      await db('history').insert(item).onConflict('date').ignore()
-    }
+    await db('quote').insert(ticker).onConflict('symbol').merge()
+    await db('history')
+      .insert(history)
+      .onConflict(['quoteSymbol', 'date'])
+      .merge()
   }
 }
