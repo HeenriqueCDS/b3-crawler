@@ -32,13 +32,14 @@ const createTables = async () => {
         await db.schema.createTable('history', (table) => {
           table.increments('id').primary()
           table.string('quoteSymbol').references('symbol').inTable('quote')
-          table.integer('date').unique()
+          table.integer('date')
           table.float('open')
           table.float('high')
           table.float('low')
           table.float('close')
           table.float('volume')
           table.float('adjustedClose')
+          table.unique(['quoteSymbol', 'date'])
         })
       }
     })

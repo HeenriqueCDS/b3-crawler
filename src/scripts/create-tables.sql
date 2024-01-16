@@ -23,11 +23,12 @@ CREATE TABLE IF NOT EXISTS "quote" (
 CREATE TABLE IF NOT EXISTS "history" (
   "id" SERIAL PRIMARY KEY,
   "quoteSymbol" VARCHAR(255) REFERENCES "quote"("symbol"),
-  "date" INTEGER UNIQUE,
+  "date" INTEGER,
   "open" FLOAT,
   "high" FLOAT,
   "low" FLOAT,
   "close" FLOAT,
   "volume" FLOAT,
-  "adjustedClose" FLOAT
+  "adjustedClose" FLOAT,
+  CONSTRAINT unique_quote_symbol_date UNIQUE ("quoteSymbol", "date")
 );
