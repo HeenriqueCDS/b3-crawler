@@ -12,10 +12,11 @@ export const handler: SQSHandler = async (event) => {
 
       const { ticker, history } = await getCompleteQuote(tickerId)
 
-      await db('quote').insert(ticker).onConflict('symbol').ignore()
-      for (const item of history) {
-        await db('history').insert(item).onConflict('date').ignore()
-      }
+      await db('quote').insert(ticker).onConflict('symbol').merge()
+      await db('history')
+        .insert(history)
+        .onConflict(['quoteSymbol', 'date'])
+        .merge()
     }
   } catch (error: any) {
     throw new Error(error)

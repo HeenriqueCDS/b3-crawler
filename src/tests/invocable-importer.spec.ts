@@ -44,7 +44,7 @@ describe('invokable-importer', () => {
     expect(quote).toHaveProperty('symbol', 'PETR4')
 
     const history = await db('history').where('quoteSymbol', 'PETR4')
-    expect(history).toHaveLength(61)
+    expect(history).toHaveLength(62)
   })
 
   it('should throw an error if ticker is not found', async () => {
