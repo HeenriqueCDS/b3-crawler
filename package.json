@@ -8,7 +8,9 @@
     "test": "vitest",
     "prebuild": "rm -rf dist",
     "build": "tsup src/functions",
-    "postbuild": "cd dist && zip -r scheduled-importer.zip scheduled-importer.js* && zip -r invocable-importer.zip invocable-importer.js*"
+    "postbuild": "cd dist && zip -r scheduled-importer.zip scheduled-importer.js* && zip -r invocable-importer.zip invocable-importer.js*",
+    "update:scheduled": "aws lambda update-function-code --function-name b3-scheduled-importer --zip-file fileb://dist/scheduled-importer.zip",
+    "update:invocable": "aws lambda update-function-code --function-name b3-invocable-importer --zip-file fileb://dist/invocable-importer.zip"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +29,7 @@
     "axios": "^1.6.5",
     "dotenv": "^16.3.1",
     "knex": "^3.1.0",
-    "pg": "^8.11.3"
+    "pg": "^8.11.3",
+    "pusher": "^5.2.0"
   }
 }
