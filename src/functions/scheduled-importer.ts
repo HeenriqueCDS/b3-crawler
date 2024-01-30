@@ -1,4 +1,5 @@
 import { db } from '@/services/database'
+import { pusher } from '@/services/pusher'
 import { getCompleteQuote } from '@/utils/client/get-complete-quote'
 import { listQuotes } from '@/utils/client/list-quotes'
 
@@ -18,4 +19,5 @@ export const handler: ScheduledHandler = async (event) => {
       .onConflict(['quoteSymbol', 'date'])
       .merge()
   }
+  pusher.trigger('stock-update', 'scheduled-event', symbols)
 }
