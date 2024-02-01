@@ -19,5 +19,5 @@ export const handler: ScheduledHandler = async (event) => {
       .onConflict(['quoteSymbol', 'date'])
       .merge()
   }
-  pusher.trigger('stock-update', 'scheduled-event', symbols)
+  await pusher.trigger('stock-update', 'scheduled-event', symbols)
 }
