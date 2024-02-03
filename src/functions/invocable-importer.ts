@@ -16,9 +16,9 @@ export const handler: SQSHandler = async (event) => {
         .insert(history)
         .onConflict(['quoteSymbol', 'date'])
         .merge()
-      pusher.trigger(`${tickerId}-tracker`, 'stock-updated', ticker)
+      await pusher.trigger(`${tickerId}-tracker`, 'stock-updated', ticker)
     } catch (error) {
-      pusher.trigger(`${tickerId}-tracker`, 'stock-not-found', tickerId)
+      await pusher.trigger(`${tickerId}-tracker`, 'stock-not-found', tickerId)
       console.error(error)
     }
   }
