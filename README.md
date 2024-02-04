@@ -25,7 +25,7 @@ This one is scheduled and triggered by Event Bridge at AWS, it retrieves data fr
 
 This lambdas are part of a bigger application called *B3Finder*, it lists stocks from B3 (Brazilian Stock Market) and show to the user useful information to help him to choose where to invest
 
-![B3 finder complete architecture diagram](diagram.png "Full project flow").
+![B3 finder complete architecture diagram](diagram.png "Full project flow")
 
 ## Getting Started
 ### Prerequisites
