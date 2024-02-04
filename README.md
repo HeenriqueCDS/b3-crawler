@@ -18,10 +18,10 @@ A lambda application that crawls data of the brazilian stock market.
 This repository houses two lambda functions
 
 `invocable-importer.ts`
-Receives a message from a SQS Queue, containing a tickerId, then it uses it to insert this ticker information and history into a Postgres database using AWS RDS
+Receives a message from a SQS Queue, containing a tickerId, then it uses it to insert this ticker information and history into a Postgres database using AWS RDS, and then send an event to `pusher service` to notify our client about fresh new quotes in real-time!
 
 `scheduled-importer.ts`
-This one is scheduled and triggered by Event Bridge at AWS, it retrieves data from 10 new tickets, and inserts into the same database as the previous function
+This one is scheduled and triggered by Event Bridge at AWS, it retrieves data from 10 new tickets, inserts into the same database and send an event just as the previous function
 
 This lambdas are part of a bigger application called *B3Finder*, it lists stocks from B3 (Brazilian Stock Market) and show to the user useful information to help him to choose where to invest
 
@@ -35,6 +35,7 @@ To run and deploy the application you'll need 4 simples things
 - An account at [BRAPI](https://brapi.dev/), to generate your access token and then save it in your `.env` 
 - [Node.js](https://nodejs.org/en) installed, i recommend you to always use the LTS version, but if there any conflicts, i am using `v18.7.0`
 - [Docker Compose](https://docs.docker.com/compose/) to run a local database, so you don't get billed on your
+- [Pusher Account](https://pusher.com/) to receive send at events to our client, then we can notify our client about fresh new quotes in real-time!
 - [AWS CLI](https://docs.aws.amazon.com/cli/) to deploy the application, you need to install and configure the AWS CLI
 
 ### Testing Locally
