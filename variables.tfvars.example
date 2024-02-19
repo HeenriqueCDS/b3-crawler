@@ -1,0 +1,11 @@
+environment_variables = {
+  API_TOKEN         = "YOUR_API_TOKEN"
+  BASE_URL          = "https://brapi.dev/api"
+  DATABASE_HOST     = "localhost"
+  DATABASE_USER     = "postgres"
+  DATABASE_PASSWORD = "postgres"
+  DATABASE_NAME     = "b3finder-test"
+  PUSHER_APP_ID     = "123456"
+  PUSHER_KEY        = "1234567890abcdef1234"
+  PUSHER_SECRET     = "1234567890abcdef1234"
+}

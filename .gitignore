@@ -4,4 +4,4 @@ vscode
 *.zip
 .vscode
 .env
-.tfvars
+variables.tfvars
