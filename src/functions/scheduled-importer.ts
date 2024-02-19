@@ -6,11 +6,10 @@ import { listQuotes } from '@/utils/client/list-quotes'
 import { ScheduledHandler } from 'aws-lambda'
 
 export const handler: ScheduledHandler = async (event) => {
-  console.log('SCHEDULED_IMPORTER')
   const count = await db('quote').count('symbol', { as: 'count' }).first()
   const page = Math.ceil(Number(count?.count) / 10) + 1 || 0
   const symbols = await listQuotes(page)
-
+  console.log(`SCHEDULED_IMPORTER: ${symbols}`)
   for (const symbol of symbols) {
     const { ticker, history } = await getCompleteQuote(symbol)
     await db('quote').insert(ticker).onConflict('symbol').merge()
