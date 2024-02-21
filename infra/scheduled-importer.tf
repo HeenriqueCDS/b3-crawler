@@ -59,11 +59,11 @@ resource "aws_iam_role_policy_attachment" "lambda_rds_access_attachment" {
 # Create lambda function
 data "archive_file" "lambda" {
   type        = "zip"
-  source_file = "dist/scheduled-importer.js"
-  output_path = "dist/scheduled-importer.zip"
+  source_file = "../dist/scheduled-importer.js"
+  output_path = "../dist/scheduled-importer.zip"
 }
 resource "aws_lambda_function" "scheduled_importer" {
-  filename      = "dist/scheduled-importer.zip"
+  filename      = "../dist/scheduled-importer.zip"
   function_name = "scheduled-importer-tf"
   role          = aws_iam_role.iam_for_lambda.arn
   handler       = "scheduled-importer.handler"
