@@ -29,6 +29,7 @@ data "aws_iam_policy_document" "assume_role" {
 resource "aws_iam_role" "iam_for_lambda" {
   name               = "iam_for_lambda"
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
+  managed_policy_arns = ["arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"]
 }
 
 # Create policy to allow lambda to access RDS
@@ -56,6 +57,13 @@ resource "aws_iam_role_policy_attachment" "lambda_rds_access_attachment" {
   policy_arn = aws_iam_policy.lambda_rds_access_policy.arn
 }
 
+# Create layer for lambda
+resource "aws_lambda_layer_version" "stock_finder_layer" {
+  filename   = "nodejs.zip" 
+  layer_name = "stock_finder_layer"
+  compatible_runtimes = ["nodejs18.x", "nodejs20.x"]
+}
+
 # Create lambda function
 data "archive_file" "lambda" {
   type        = "zip"
@@ -69,8 +77,10 @@ resource "aws_lambda_function" "scheduled_importer" {
   handler       = "scheduled-importer.handler"
 
   source_code_hash = data.archive_file.lambda.output_base64sha256
+  timeout = 60
 
   runtime = "nodejs18.x"
+  layers = [aws_lambda_layer_version.stock_finder_layer.arn]
 
   environment {
     variables = local.env_vars
