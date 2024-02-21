@@ -51,14 +51,12 @@ resource "aws_iam_policy" "lambda_rds_access_policy" {
 }
 
 # Attach policy to role
-
 resource "aws_iam_role_policy_attachment" "lambda_rds_access_attachment" {
   role       = aws_iam_role.iam_for_lambda.name
   policy_arn = aws_iam_policy.lambda_rds_access_policy.arn
 }
 
 # Create lambda function
-
 data "archive_file" "lambda" {
   type        = "zip"
   source_file = "dist/scheduled-importer.js"
@@ -80,8 +78,6 @@ resource "aws_lambda_function" "scheduled_importer" {
 }
 
 # Create CloudWatch Event Rule
-
-
 resource "aws_cloudwatch_event_rule" "every_day" {
     name = "every-day"
     description = "Fires every day at 15:00"
