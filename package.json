@@ -9,6 +9,11 @@
     "prebuild": "rm -rf dist",
     "build": "tsup src/functions",
     "postbuild": "cd dist && zip -r scheduled-importer.zip scheduled-importer.js* && zip -r invocable-importer.zip invocable-importer.js*",
+    "predeploy": "npm run build && cd infra && zip -r nodejs.zip nodejs",
+    "deploy": "cd infra && terraform init -reconfigure && terraform plan && terraform apply",
+    "destroy": "cd infra && terraform destroy",
+    "preupdate:scheduled": "npm run build",
+    "preupdate:invocable": "npm run build",
     "update:scheduled": "aws lambda update-function-code --function-name b3-scheduled-importer --zip-file fileb://dist/scheduled-importer.zip",
     "update:invocable": "aws lambda update-function-code --function-name b3-invocable-importer --zip-file fileb://dist/invocable-importer.zip"
   },
