@@ -72,7 +72,7 @@ data "archive_file" "lambda" {
 }
 resource "aws_lambda_function" "scheduled_importer" {
   filename      = "../dist/scheduled-importer.zip"
-  function_name = "scheduled-importer-tf"
+  function_name = "b3-scheduled-importer"
   role          = aws_iam_role.iam_for_lambda.arn
   handler       = "scheduled-importer.handler"
 
