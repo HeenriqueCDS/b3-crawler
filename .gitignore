@@ -5,4 +5,7 @@ vscode
 .vscode
 .env
 *.terraform
+*.tfstate
+*.hcl
+*.backup
 variables.tfvars
